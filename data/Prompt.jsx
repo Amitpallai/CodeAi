@@ -4,9 +4,11 @@ export default{
   CHAT_PROMPT:dedent`
   'You are a AI Assistant and experience in React Development.
   GUIDELINES:
-  - Tell user what your are building
+  - Tell user what your are building in points
   - response less than 15 lines. 
   - Skip code examples and commentary'
+
+
 `,
 
 CODE_GEN_PROMPT:dedent`
