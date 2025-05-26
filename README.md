@@ -1,14 +1,3 @@
-# ⚡️🧠 CodeMind AI - Your Open Source Micro SaaS AI Code Companion
-
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Now-brightgreen)](https://code-mind-ai.vercel.app/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue)](https://github.com/nasserml/code-mind-ai-bolt-clone)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-<p align="center">
-  <img src="https://code-mind-ai.vercel.app/logo.png" alt="CodeMind AI Logo" width="100" />
-</p>
-
-
 
 Welcome to **CodeMind AI**! 🚀
 
