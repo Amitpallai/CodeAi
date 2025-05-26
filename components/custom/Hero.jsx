@@ -25,22 +25,42 @@ function Hero() {
       setOpenDialog(true);
       return;
     }
-    if(userDetail?.token < 10) {
-      toast("You don't have enough token to generate code");
-      return
+    if (!userDetail?._id) {
+      toast.error('User information is missing');
+      return;
     }
-    const msg = {
-      role: 'user',
-      content: input,
-    };
-    setMessages(msg);
+    if (userDetail?.token < 10) {
+      toast("You don't have enough token to generate code");
+      return;
+    }
+    if (!input?.trim()) return;
 
-    const workspaceId = await CreateWorkspace({
-      user: userDetail._id,
-      messages: [msg],
-    });
-    console.log(workspaceId);
-    router.push('/workspace/' + workspaceId);
+    try {
+      const msg = {
+        role: 'user',
+        content: input.trim(),
+        id: crypto.randomUUID()
+      };
+
+      // Initialize messages as array
+      setMessages([msg]);
+
+      const workspaceId = await CreateWorkspace({
+        user: userDetail._id,
+        messages: [msg],
+      });
+
+      if (!workspaceId) {
+        throw new Error('Failed to create workspace');
+      }
+
+      console.log('Created workspace:', workspaceId);
+      router.push('/workspace/' + workspaceId);
+    } catch (error) {
+      console.error('Error creating workspace:', error);
+      toast.error(error.message || 'Failed to create chat');
+      setMessages([]); // Reset messages on error
+    }
   };
 
   return (

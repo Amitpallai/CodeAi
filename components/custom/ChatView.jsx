@@ -27,7 +27,7 @@ function ChatView() {
   const convex = useConvex();
   const { messages, setMessages } = useContext(MessagesContext);
   const { userDetail, setUserDetail } = useContext(UserDetailContext);
-  const [userInput, setUserInput] = useState( );
+  const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const UpdateMessages = useMutation(api.workspace.UpdateMessages);
   const { toggleSidebar } = useSidebar();
@@ -35,67 +35,109 @@ function ChatView() {
 
   const GetWorkspaceData = useCallback(async () => {
     try {
+      if (!id || !userDetail?._id) return;
+      
       const result = await convex.query(api.workspace.GetWorkspace, {
         workspaceId: id,
       });
-      if (result?.messages) {
-        setMessages(result.messages);
-      }
-    } catch (error) {
-      console.error('Error fetching workspace data:', error);
-    }
-  }, [convex, id, setMessages]);
-
-  const saveMessagesToDatabase = async (updatedMessages) => {
-    try {
-      if (!userDetail?._id) {
-        toast.error('User ID is missing');
+      console.log('Workspace data:', result); // Debug log
+      
+      if (!result) {
+        console.error('Workspace not found');
         return;
       }
 
-      await UpdateMessages({
-        user: userDetail._id,
+      if (result.user !== userDetail._id) {
+        console.error('Unauthorized access to workspace');
+        return;
+      }
+
+      if (result?.messages) {
+        const messageArray = Array.isArray(result.messages) ? result.messages : [result.messages];
+        setMessages(messageArray.filter(msg => msg && msg.content)); // Filter out invalid messages
+      } else {
+        setMessages([]);
+      }
+    } catch (error) {
+      console.error('Error fetching workspace data:', error);
+      setMessages([]);
+    }
+  }, [convex, id, setMessages, userDetail?._id]);
+
+  const saveMessagesToDatabase = async (updatedMessages) => {
+    try {
+      if (!userDetail?._id || !id) {
+        toast.error('Missing user or workspace information');
+        return;
+      }
+
+      const validMessages = updatedMessages.filter(msg => msg && msg.content);
+      if (validMessages.length === 0) {
+        console.error('No valid messages to save');
+        return;
+      }
+
+      const result = await UpdateMessages({
         workspaceId: id,
-        messages: updatedMessages,
+        user: userDetail._id,
+        messages: validMessages,
       });
+
+      console.log('Messages updated successfully:', result);
     } catch (error) {
       console.error('Error saving messages:', error);
+      GetWorkspaceData();
     }
   };
 
   const GetAiResponse = useCallback(async () => {
+    if (!messages?.length || !userDetail?._id) return;
+
     try {
       setLoading(true);
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.role !== 'user') return;
+
       const PROMPT = JSON.stringify(messages) + Prompt.CHAT_PROMPT;
-      console.log({ PROMPT });
+      console.log('Sending prompt:', PROMPT);
+      
       const result = await axios.post('/api/ai-chat', {
         prompt: PROMPT,
       });
-      console.log(result.data.result);
+
+
       const aiResp = {
         role: 'assistant',
         content: result.data.result,
         id: crypto.randomUUID()
       };
+
       const updatedMessages = [...messages, aiResp];
+      
       setMessages(updatedMessages);
 
-      // Save AI response to database
       await saveMessagesToDatabase(updatedMessages);
 
-      console.log("LEN", countToken(JSON.stringify(aiResp)));
-      const token = Number(userDetail?.token) - Number(countToken(JSON.stringify(aiResp)));
-      setUserDetail((prev) => prev ? { ...prev, token: token } : null);
+      const tokenCount = countToken(JSON.stringify(aiResp));
+      const newTokenCount = Number(userDetail?.token) - Number(tokenCount);
+      
+      if (newTokenCount < 0) {
+        throw new Error('Insufficient tokens');
+      }
+
       await UpdateToken({
-        token: token,
-        userId: userDetail?._id
+        token: newTokenCount,
+        userId: userDetail._id
       });
+
+      setUserDetail((prev) => prev ? { ...prev, token: newTokenCount } : null);
     } catch (error) {
       console.error('Error getting AI response:', error);
+      GetWorkspaceData();
     } finally {
       setLoading(false);
     }
-  }, [messages, userDetail, setMessages, UpdateToken, setUserDetail, saveMessagesToDatabase]);
+  }, [messages, userDetail, setMessages, UpdateToken, setUserDetail, saveMessagesToDatabase, GetWorkspaceData]);
 
   useEffect(() => {
     if (id) {
@@ -112,7 +154,19 @@ function ChatView() {
     }
   }, [messages, GetAiResponse]);
 
+  useEffect(() => {
+    if (id && userDetail?._id) {
+      const refreshInterval = setInterval(() => {
+        GetWorkspaceData();
+      }, 2000);
+
+      return () => clearInterval(refreshInterval);
+    }
+  }, [id, userDetail?._id, GetWorkspaceData]);
+
   const onGenerate = async (input) => {
+    if (!input?.trim()) return;
+    
     if (userDetail?.token && userDetail?.token < 10) {
       toast("You don't have enough token to generate code");
       return;
@@ -121,10 +175,10 @@ function ChatView() {
     try {
       const userMessage = { 
         role: 'user', 
-        content: input,
+        content: input.trim(),
         id: crypto.randomUUID()
       };
-      const updatedMessages = [...messages, userMessage];
+      const updatedMessages = Array.isArray(messages) ? [...messages, userMessage] : [userMessage];
       
       // Update local state
       setMessages(updatedMessages);
@@ -144,7 +198,7 @@ function ChatView() {
               key={index}
               className="p-3 rounded-lg mb-2 flex gap-2 items-start justify-start leading-7"
               style={{
-                backgroundColor: Colors.CHAT_BACKGROUND,
+                backgroundColor: "#272727",
               }}
             >
                {msg.role === 'user' && (
@@ -170,7 +224,7 @@ function ChatView() {
           <div
             className="p-3 rounded-lg mb-2 flex gap-2 items-center justify-start"
             style={{
-              backgroundColor: Colors.CHAT_BACKGROUND,
+              backgroundColor:"#272727",
             }}
           >
             <Loader size="sm" text="Generating response..." />
@@ -193,7 +247,7 @@ function ChatView() {
         <div
           className="p-5 border rounded-xl max-w-2xl w-full mt-3"
           style={{
-            backgroundColor: Colors.BACKGROUND,
+            backgroundColor:"#151515",
           }}
         >
            <div className="flex gap-2">

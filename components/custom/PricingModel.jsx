@@ -20,7 +20,7 @@ function PricingModel() {
           <Button
             className="w-full"
             style={{
-              backgroundColor: Colors.BLUE,
+              backgroundColor:"#2ba6ff",
               color: 'white',
             }}
           >

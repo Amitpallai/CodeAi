@@ -23,7 +23,7 @@ function AppSideBar() {
           <MessageCircleCodeIcon /> Start New Chat
         </Button>
       </SidebarHeader>
-      <SidebarContent className="">
+      <SidebarContent >
         <SidebarGroup>
           <WorkspaceHistory />
         </SidebarGroup>

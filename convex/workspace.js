@@ -29,8 +29,14 @@ export const UpdateMessages = mutation({
   args: {
     workspaceId: v.id('workspace'),
     messages: v.any(),
+    user: v.id('users'),
   },
   handler: async (ctx, args) => {
+    const workspace = await ctx.db.get(args.workspaceId);
+    if (!workspace || workspace.user !== args.user) {
+      throw new Error('Workspace not found or unauthorized');
+    }
+    
     const result = await ctx.db.patch(args.workspaceId, {
       messages: args.messages,
     });

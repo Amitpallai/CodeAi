@@ -72,13 +72,13 @@ export default config;
     "react-chartjs-2": "^5.3.0",
     "chart.js": "^4.4.7",
   },
-  PRICING_DESC:'Start with a free account to speed up your workflow on public projects or boost your entire team with instantly-opening production environments.',
+  PRICING_DESC:'',
   PRICING_OPTIONS:[
     {
       name:'Basic',
       tokens:'50K',
       value:50000,
-      desc:'Ideal for hobbyists and casual users for light, exploratory use.',
+      desc:'Designed for professionals who need to use Bolt a few times per week.',
       price:4.99
     },
     {

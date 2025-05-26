@@ -40,6 +40,7 @@ function SignInDialog({ openDialog, closeDialog }) {
       if (typeof window !== undefined) {
         localStorage.setItem("user", JSON.stringify(user));
       }
+      window.location.reload();
       setUserDetail(userInfo?.data);
       closeDialog(false);
     },

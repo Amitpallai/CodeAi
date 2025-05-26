@@ -13,16 +13,12 @@ function SideBarFooter() {
   const { toggleSidebar } = useSidebar();
 
   const handleSignOut = () => {
-    // Clear user from localStorage
     localStorage.removeItem('user');
-    // Clear user from context
     setUserDetail(null);
-    // Show success message
     toast.success('Signed out successfully');
-    // Redirect to home/sign in page
-    router.push('/');
-
     toggleSidebar(false);
+    window.location.reload();
+    router.push('/');
   };
 
   const options = [

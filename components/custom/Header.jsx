@@ -29,7 +29,7 @@ function Header() {
         {userDetail?.name && (
           <SidebarTrigger onClick={() => toggleSidebar()} />
         )}
-        <h1 className='text-2xl font-bold' >CodeGenie</h1>
+        <h1 className='text-2xl font-bold italic' >Bolt</h1>
       </div>
       {!userDetail?.name ? (
         <div className="flex gap-5">
@@ -40,7 +40,7 @@ function Header() {
             onClick={() => setOpenDialog(true)}
             className="text-white"
             style={{
-              backgroundColor: Colors.BLUE,
+              backgroundColor: "#2ba6ff",
             }}>
             Get Started
           </Button>
@@ -56,7 +56,7 @@ function Header() {
                 onClick={() => onActionBtn('deploy')}
                 className="text-white"
                 style={{
-                  backgroundColor: Colors.BLUE,
+                  backgroundColor:"#2ba6ff",
                 }}
               >
                 <Rocket /> Deploy
