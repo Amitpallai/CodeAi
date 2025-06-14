@@ -23,7 +23,7 @@ A modern web application built with Next.js 14, featuring AI-powered code assist
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone [[your-repository-url](https://github.com/Amitpallai/CodeAi)]
 cd CodeAi
 ```
 
