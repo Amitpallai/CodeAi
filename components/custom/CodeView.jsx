@@ -4,7 +4,6 @@ import {
   SandpackProvider,
   SandpackLayout,
   SandpackCodeEditor,
-  SandpackPreview,
   SandpackFileExplorer,
 } from '@codesandbox/sandpack-react';
 import Lookup from '../../data/Lookup';
@@ -14,7 +13,6 @@ import axios from 'axios';
 import { useConvex, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { useParams } from 'next/navigation';
-import { Loader2Icon } from 'lucide-react';
 import { countToken } from './ChatView';
 import { UserDetailContext } from '../../context/UserDetailContext';
 import { toast } from 'sonner';

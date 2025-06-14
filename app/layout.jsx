@@ -1,6 +1,6 @@
+import "./globals.css";
 import { Toaster } from "sonner";
 import ConvexClientProvider from "./ConvexClientProvider";
-import "./globals.css";
 import Provider from "./provider";
 
 export const metadata = {
@@ -14,11 +14,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body >
+      <body className="min-h-screen bg-background">
         <ConvexClientProvider>
           <Provider>{children}</Provider>
           <Toaster />
-
         </ConvexClientProvider>
       </body>
     </html>
