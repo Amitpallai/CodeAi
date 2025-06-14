@@ -1,4 +1,4 @@
-# CodeMind AI
+# CodeAi
 
 A modern web application built with Next.js 14, featuring AI-powered code assistance and a beautiful UI.
 
@@ -13,11 +13,6 @@ A modern web application built with Next.js 14, featuring AI-powered code assist
 - 🎯 TypeScript support
 - 🔍 Code syntax highlighting
 - 📝 Markdown support
-
-## Prerequisites
-
-- Node.js >= 18.0.0
-- npm >= 9.0.0
 
 ## Getting Started
 
@@ -89,9 +84,6 @@ CodeAi/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
