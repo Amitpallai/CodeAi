@@ -29,7 +29,7 @@ function Header() {
         {userDetail?.name && (
           <SidebarTrigger onClick={() => toggleSidebar()} />
         )}
-        <h1 className='text-2xl font-bold italic' >Bolt</h1>
+        <h1 className='text-2xl font-bold italic' >CodeAi</h1>
       </div>
       {!userDetail?.name ? (
         <div className="flex gap-5">

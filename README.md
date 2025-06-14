@@ -1,46 +1,102 @@
+# CodeMind AI
 
-![Screenshot 2025-05-26 133230](https://github.com/user-attachments/assets/1c76adcd-cff2-4075-9507-23262ca8b6df)
-![Screenshot 2025-05-26 202629](https://github.com/user-attachments/assets/a4a52a26-34a0-4761-802f-e0878fdb20a9)
-![Screenshot 2025-05-26 203258](https://github.com/user-attachments/assets/3c63c58a-08c4-436a-b4fb-3cd10135ba33)
+A modern web application built with Next.js 14, featuring AI-powered code assistance and a beautiful UI.
 
-## 📂 Project Structure: A Deep Dive
+## Features
 
-Understanding the project structure helps with contributions and customizations:
+- 🚀 Next.js 14 with App Router
+- 🎨 Tailwind CSS for styling
+- 🔐 Clerk Authentication
+- 🤖 AI-powered code assistance
+- 📱 Responsive design
+- 🌙 Dark mode support
+- 🎯 TypeScript support
+- 🔍 Code syntax highlighting
+- 📝 Markdown support
 
-```
-code-mind-ai-bolt-clone/
-├── app/                      # Main application logic
-│   ├── (main)/               # Main app routes and layouts
-│   │   ├── pricing/          # Pricing page
-│   │   └── workspace/        # Workspace page for projects
-│   ├── api/                  # API routes
-│   │   ├── ai-chat/          # AI chat API endpoint
-│   │   └── gen-ai-code/      # Code generation API endpoint
-│   ├── ConvexClientProvider.jsx # Convex provider setup
-│   ├── globals.css           # Global styles
-│   ├── layout.js             # Root layout
-│   ├── page.js               # Home page
-│   └── provider.jsx          # Global state providers
-├── components/               # Reusable UI components
-│   ├── custom/               # Custom application-specific components
-│   └── ui/                   # Shadcn UI components
-├── configs/                  # Configuration for AI models and other settings
-├── context/                  # React context for global state
-├── convex/                   # Convex backend functions
-│   ├── schema.js             # Database schema
-│   ├── users.js              # User-related database operations
-│   ├── workspace.js          # Workspace-related database operations
-│   └── _generated/           # Auto-generated Convex files
-├── data/                     # Static data (prompts, lookups, colors)
-├── hooks/                    # Custom React hooks
-├── lib/                      # Utility functions
-├── public/                   # Public assets (images, icons)
-├── .env.example              # Example environment variables
-├── components.json           # Shadcn UI components configuration
-├── jsconfig.json             # JavaScript configuration
-├── next.config.mjs           # Next.js configuration
-├── package.json              # Project dependencies and scripts
-├── postcss.config.mjs        # PostCSS configuration
-└── tailwind.config.mjs       # Tailwind CSS configuration
+## Prerequisites
+
+- Node.js >= 18.0.0
+- npm >= 9.0.0
+
+## Getting Started
+
+1. Clone the repository:
+```bash
+git clone [your-repository-url]
+cd CodeAi
 ```
 
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+Create a `.env.local` file in the root directory with the following variables:
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+```
+
+4. Run the development server:
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+CodeAi/
+├── app/                 # Next.js app directory
+├── components/          # React components
+├── public/             # Static assets
+├── styles/             # Global styles
+├── lib/                # Utility functions
+└── types/              # TypeScript type definitions
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 14
+- **Styling**: Tailwind CSS
+- **Authentication**: Clerk
+- **UI Components**: Radix UI
+- **State Management**: React Query
+- **Code Highlighting**: React Syntax Highlighter
+- **Markdown**: React Markdown
+- **Icons**: Lucide React
+- **Animations**: Tailwind CSS Animate
+
+## Development
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Clerk](https://clerk.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [React Query](https://tanstack.com/query/latest)
