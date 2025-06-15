@@ -14,7 +14,44 @@ A modern web application built with Next.js 14, featuring AI-powered code assist
 - 🔍 Code syntax highlighting
 - 📝 Markdown support
 
-## Getting Started
+
+## Tech Stack
+
+- **Framework**: Next.js 14
+- **Styling**: Tailwind CSS
+- **Authentication**: Clerk
+- **UI Components**: Radix UI
+- **State Management**: React Query
+- **Code Highlighting**: React Syntax Highlighter
+- **Markdown**: React Markdown
+- **Icons**: Lucide React
+- **Animations**: Tailwind CSS Animate
+
+## Development
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Clerk](https://clerk.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [React Query](https://tanstack.com/query/latest)
+
+- ## Getting Started
 
 1. Clone the repository:
 ```bash
@@ -57,38 +94,3 @@ CodeAi/
 └── types/              # TypeScript type definitions
 ```
 
-## Tech Stack
-
-- **Framework**: Next.js 14
-- **Styling**: Tailwind CSS
-- **Authentication**: Clerk
-- **UI Components**: Radix UI
-- **State Management**: React Query
-- **Code Highlighting**: React Syntax Highlighter
-- **Markdown**: React Markdown
-- **Icons**: Lucide React
-- **Animations**: Tailwind CSS Animate
-
-## Development
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-
-## Acknowledgments
-
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Clerk](https://clerk.com/)
-- [Radix UI](https://www.radix-ui.com/)
-- [React Query](https://tanstack.com/query/latest)
