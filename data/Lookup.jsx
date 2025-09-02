@@ -1,7 +1,7 @@
 import dedent from "dedent";
 
 export default {
-  SUGGSTIONS: ['Create ToDo App in React', 'Create Budget Track App', 'Create Gym Managment Portal Dashboard', 'Create Quizz App On History', 'Create Login Signup Screen'],
+  SUGGSTIONS: ['Create ToDo App', 'Create Budget Track App', 'Create Gym Managment Portal Dashboard', 'Create Quizz App On History', 'Create Login Signup Screen'],
   HERO_HEADING: 'What do you want to build?',
   HERO_DESC: 'Prompt, run, edit, and deploy full-stack web apps.',
   INPUT_PLACEHOLDER: 'What you want to build?',
@@ -59,13 +59,12 @@ export default config;
   DEPENDANCY: {
 
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    autoprefixer: "^10.0.0",
+    "tailwindcss": "^3.4.1",  
+   "autoprefixer": "^10.0.0",
     "uuid4": "^2.0.3",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "lucide-react": "^0.469.0",
-    "react-router-dom": "^7.1.1",
     "firebase": "^11.1.0",
     "@google/generative-ai": "^0.21.0",
     "date-fns": "^4.1.0",
